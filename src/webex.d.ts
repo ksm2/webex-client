@@ -36,6 +36,7 @@ declare module 'webex' {
   export interface RoomObject extends Object {
     title: string;
     teamId: string;
+    lastActivity: string;
     type: 'group' | 'direct';
   }
 

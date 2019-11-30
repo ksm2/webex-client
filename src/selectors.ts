@@ -13,13 +13,17 @@ export const selectPersonByID = (id: string): Selector<Store, Op<PersonObject>> 
 
 export const selectRoomByID = (id: string): Selector<Store, Op<RoomObject>> => (store) => store.room[id];
 
-export const selectAllRooms: Selector<Store, RoomObject[]> = (store) =>
-  Object.values(store.room).sort((r1, r2) => r1.title.localeCompare(r2.title));
+export const selectRecentRooms: Selector<Store, RoomObject[]> = (store) => {
+  const date = Date.now() - 14 * 86400000;
+  return Object.values(store.room)
+    .filter((room) => new Date(room.lastActivity).getTime() >= date)
+    .sort((r1, r2) => r1.title.localeCompare(r2.title));
+};
 
-export const selectAllGroups: Selector<Store, RoomObject[]> = createSelector(selectAllRooms, (rooms) =>
+export const selectRecentGroups: Selector<Store, RoomObject[]> = createSelector(selectRecentRooms, (rooms) =>
   rooms.filter((room) => room.type === 'group'),
 );
 
-export const selectAllPeople: Selector<Store, RoomObject[]> = createSelector(selectAllRooms, (rooms) =>
+export const selectRecentPeople: Selector<Store, RoomObject[]> = createSelector(selectRecentRooms, (rooms) =>
   rooms.filter((room) => room.type === 'direct'),
 );

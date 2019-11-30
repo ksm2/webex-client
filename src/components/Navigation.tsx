@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAllGroups, selectAllPeople } from '../selectors';
+import { selectRecentGroups, selectRecentPeople } from '../selectors';
 import './Navigation.css';
 import RoomList from './RoomList';
 
 const Navigation: FC = () => {
-  const groups = useSelector(selectAllGroups);
-  const people = useSelector(selectAllPeople);
+  const groups = useSelector(selectRecentGroups);
+  const people = useSelector(selectRecentPeople);
 
   return (
     <aside className="Navigation">
