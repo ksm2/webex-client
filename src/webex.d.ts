@@ -9,23 +9,37 @@ declare module 'webex' {
     hasPrevious(): boolean;
   }
 
-  export interface PersonObject {
+  export interface Object {
     id: string;
-    emails: string[];
-    displayName: string;
     created: string;
   }
 
-  export interface RoomObject {
-    id: string;
+  export interface PhoneNumber {
+    type: string;
+    value: string;
+  }
+
+  export interface PersonObject extends Object {
+    emails: string[];
+    displayName: string;
+    avatar: string;
+    displayName: string;
+    emails: string[];
+    firstName: string;
+    lastName: string;
+    nickName: string;
+    orgId: string;
+    phoneNumbers: PhoneNumber[];
+    type: 'person';
+  }
+
+  export interface RoomObject extends Object {
     title: string;
     teamId: string;
-    created: string;
     type: 'group' | 'direct';
   }
 
-  export interface MessageObject {
-    id: string; // (server generated) Unique identifier for the message
+  export interface MessageObject extends Object {
     html?: string;
     personId: string; // The ID for the author of the messasge
     personEmail: string; // The email for the author of the messasge
@@ -33,7 +47,6 @@ declare module 'webex' {
     text: string; // The message posted to the room in plain text
     markdown?: string; // The message posted to the room in markdown
     files: string[]; // The source URL(s) for the message attachment(s). See the Message Attachments Guide for a list of supported media types.
-    created: string; // (server generated) The date and time that the message was created
   }
 
   export interface MessageList {

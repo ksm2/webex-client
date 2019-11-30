@@ -1,8 +1,28 @@
 .Message {
-  margin: 2rem 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.Message:hover {
+  background: #eeeeee;
+}
+
+.MessageHeader {
+  line-height: 2rem;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .MessageDate {
+  line-height: 2rem;
   margin-left: 1rem;
-  color: #dddddd;
+  color: #777777;
+  visibility: hidden;
+}
+
+.Message:hover .MessageDate {
+  visibility: visible;
+}
+
+.MessageContent {
+  padding-left: 2.5rem;
 }

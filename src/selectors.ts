@@ -1,6 +1,6 @@
 import { Selector } from 'react-redux';
 import { createSelector } from 'reselect';
-import { MessageObject, RoomObject } from 'webex';
+import { MessageObject, PersonObject, RoomObject } from 'webex';
 import Store from './Store';
 import { CounterState } from './reducers/counterReducer';
 
@@ -8,6 +8,8 @@ export const selectCounter: Selector<Store, CounterState> = (store) => store.cou
 
 export const selectMessagesByRoomID = (id: string): Selector<Store, Op<MessageObject[]>> => (store) =>
   store.message[id];
+
+export const selectPersonByID = (id: string): Selector<Store, Op<PersonObject>> => (store) => store.person[id];
 
 export const selectRoomByID = (id: string): Selector<Store, Op<RoomObject>> => (store) => store.room[id];
 

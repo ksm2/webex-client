@@ -11,10 +11,10 @@ export interface Props {
 
 const Message: FC<Props> = ({ message }) => (
   <div className="Message">
-    <p>
+    <div className="MessageHeader">
       <PersonName id={message.personId} />
       <span className="MessageDate">{formatTime(message.created)}</span>
-    </p>
+    </div>
     <MessageContent message={message} />
   </div>
 );
