@@ -1,28 +1,37 @@
 .Message {
-  padding: 0.75rem 1rem;
+  padding: 0.25rem 1rem;
+  display: flex;
+  flex-flow: row nowrap;
 }
-
+.Message.withHeader {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
 .Message:hover {
   background: #eeeeee;
 }
 
+.MessageLeft {
+  width: 2rem;
+  margin-right: 0.5rem;
+}
+
+.MessageRight {
+  flex-grow: 1;
+}
+
 .MessageHeader {
-  line-height: 2rem;
-  display: flex;
-  flex-flow: row nowrap;
+  margin-bottom: 0.25rem;
+}
+.MessageHeader .MessageDate {
+  margin-left: 1rem;
 }
 
 .MessageDate {
-  line-height: 2rem;
-  margin-left: 1rem;
   color: #777777;
   visibility: hidden;
 }
 
 .Message:hover .MessageDate {
   visibility: visible;
-}
-
-.MessageContent {
-  padding-left: 2.5rem;
 }

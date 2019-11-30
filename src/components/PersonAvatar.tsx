@@ -2,13 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPersonByID } from '../actions/person';
 import { selectPersonByID } from '../selectors';
-import './PersonName.css';
+import './PersonAvatar.css';
 
 export interface Props {
   id: string;
 }
 
-const PersonName: FC<Props> = ({ id }) => {
+const PersonAvatar: FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
   const person = useSelector(selectPersonByID(id));
 
@@ -19,14 +19,10 @@ const PersonName: FC<Props> = ({ id }) => {
   }, [dispatch, id, person]);
 
   if (!person) {
-    return (
-      <span className="PersonName">
-        <em>Loading ...</em>
-      </span>
-    );
+    return <div className="PersonAvatar" />;
   }
 
-  return <span className="PersonName">{person.displayName}</span>;
+  return <div className="PersonAvatar" style={{ backgroundImage: `url(${person.avatar})` }} />;
 };
 
-export default PersonName;
+export default PersonAvatar;
