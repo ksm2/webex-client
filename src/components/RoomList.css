@@ -1,0 +1,15 @@
+ul.RoomList {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0;
+}
+
+ul.RoomList > li {
+  list-style-type: none;
+}
+
+ul.RoomList > li > a {
+  display: block;
+  padding: 0 1rem;
+  line-height: 1.5rem;
+}

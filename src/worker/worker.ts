@@ -3,6 +3,7 @@ import { expose } from 'comlink';
 import { applyMiddleware, createStore, StoreEnhancer } from 'redux';
 import { createLogger } from 'redux-logger';
 import Webex from 'webex';
+import { addRoom } from '../actions/room';
 import createReducer from './createReducer';
 import WorkerInterface from './WorkerInterface';
 
@@ -29,12 +30,21 @@ const webex = Webex.init({
   },
 });
 
-webex.rooms.list({ max: 20 }).then((rooms) => {
-  console.log(rooms.items);
-  console.log(rooms.hasNext());
-});
-
 const store = createStore(createReducer(), middleware);
+
+webex.rooms.list({ max: 10 }).then(async (rooms) => {
+  let page = rooms;
+  while (true) {
+    for (const room of page) {
+      store.dispatch(addRoom(room));
+    }
+    if (page.hasNext()) {
+      page = await page.next();
+    } else {
+      break;
+    }
+  }
+});
 
 const worker: WorkerInterface = {
   dispatch: store.dispatch,

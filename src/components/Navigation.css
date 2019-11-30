@@ -1,0 +1,22 @@
+aside.Navigation {
+  grid-area: aside;
+  background: black;
+  color: white;
+  overflow-y: scroll;
+}
+
+aside.Navigation h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 0 1rem;
+  margin-top: 2rem;
+}
+
+aside.Navigation a {
+  color: inherit;
+}
+
+aside.Navigation a:hover {
+  background: #555;
+}

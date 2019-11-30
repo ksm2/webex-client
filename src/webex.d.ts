@@ -21,6 +21,7 @@ declare module 'webex' {
     title: string;
     teamId: string;
     created: string;
+    type: 'group' | 'direct';
   }
 
   export interface ReadonlyCollection<T> {
