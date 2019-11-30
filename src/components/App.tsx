@@ -1,14 +1,22 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from '../actions/counter';
+import { selectCounter } from '../selectors';
 import logo from '../logo.svg';
 import './App.css';
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector(selectCounter);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Counter: {counter}
+          <button onClick={() => dispatch(increment())}>Increment</button>
+          <button onClick={() => dispatch(decrement())}>Decrement</button>
         </p>
         <a
           className="App-link"

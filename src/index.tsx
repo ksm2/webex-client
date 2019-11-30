@@ -1,19 +1,22 @@
-import * as Comlink from 'comlink';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// eslint-disable-next-line
-import Worker from 'worker-loader!./worker/worker';
-import './index.css';
+import { Provider } from 'react-redux';
+import createRemoteStore from './client/createRemoteStore';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import WorkerInterface from './worker/WorkerInterface';
+import './index.css';
 
-const worker = Comlink.wrap<WorkerInterface>(new Worker());
-worker.add(40, 2).then(console.dir);
+const main = async () => {
+  const store = await createRemoteStore();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+  ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+  // If you want your app to work offline and load faster, you can change
+  // unregister() to register() below. Note this comes with some pitfalls.
+  // Learn more about service workers: https://bit.ly/CRA-PWA
+  serviceWorker.register();
+};
+
+main().catch((err) => {
+  console.error(err.stack);
+});

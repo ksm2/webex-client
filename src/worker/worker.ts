@@ -1,12 +1,15 @@
-import * as Comlink from 'comlink';
+import { expose } from 'comlink';
+import { createStore } from 'redux';
+import createReducer from './createReducer';
 import WorkerInterface from './WorkerInterface';
 
-const add = (a: number, b: number): number => {
-  return a + b;
-}
+const store = createStore(createReducer());
 
-const workerInterface: WorkerInterface = {
-  add,
-}
-
-Comlink.expose(workerInterface);
+const worker: WorkerInterface = {
+  dispatch: store.dispatch,
+  getState: store.getState,
+  subscribe: (f: () => void) => {
+    store.subscribe(f);
+  },
+};
+expose(worker);
