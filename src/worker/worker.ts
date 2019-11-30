@@ -1,9 +1,21 @@
 import { expose } from 'comlink';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore, StoreEnhancer } from 'redux';
+import { createLogger } from 'redux-logger';
 import createReducer from './createReducer';
 import WorkerInterface from './WorkerInterface';
 
-const store = createStore(createReducer());
+const isDevEnvironment = process.env.NODE_ENV === 'development';
+
+let middleware: StoreEnhancer<any> | undefined;
+if (isDevEnvironment) {
+  const logger = createLogger({
+    collapsed: true,
+  });
+
+  middleware = applyMiddleware(logger);
+}
+
+const store = createStore(createReducer(), middleware);
 
 const worker: WorkerInterface = {
   dispatch: store.dispatch,
