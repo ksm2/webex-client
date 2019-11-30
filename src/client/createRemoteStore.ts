@@ -6,15 +6,15 @@ import { AnyAction, Store, Observable } from 'redux';
 
 const createRemoteStore = async (): Promise<Store<any, AnyAction>> => {
   const store = Comlink.wrap<WorkerInterface>(new Worker());
-
   const subscribers = new Set<() => void>();
 
   let latestState = await store.getState();
-  store.subscribe(
+
+  await store.subscribe(
     Comlink.proxy(async () => {
       latestState = await store.getState();
       subscribers.forEach((f) => f());
-    })
+    }),
   );
 
   return {
@@ -31,8 +31,8 @@ const createRemoteStore = async (): Promise<Store<any, AnyAction>> => {
       return () => subscribers.delete(listener);
     },
     replaceReducer: () => {
-      throw new Error("Can’t transfer a function");
-    }
+      throw new Error('Can’t transfer a function');
+    },
   };
 };
 
