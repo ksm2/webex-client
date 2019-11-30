@@ -30,3 +30,7 @@ h1, h2, h3, ul {
   padding: 0;
   margin: 0;
 }
+
+h1 {
+  font-size: 1.5rem;
+}

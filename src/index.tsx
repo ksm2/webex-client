@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router5';
 import createRemoteStore from './client/createRemoteStore';
 import App from './components/App';
+import createRouter from './createRouter';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import './marine.css';
 
 const main = async () => {
   const store = await createRemoteStore();
+  const router = createRouter(store);
 
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <RouterProvider router={router}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </RouterProvider>,
     document.getElementById('root'),
   );
 

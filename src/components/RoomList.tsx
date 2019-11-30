@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router5';
 import { RoomObject } from 'webex';
 import './RoomList.css';
 
@@ -10,7 +11,9 @@ const RoomList: FC<Props> = ({ rooms }) => (
   <ul className="RoomList">
     {rooms.map((room) => (
       <li key={room.id}>
-        <a href="#">{room.title}</a>
+        <Link routeName="rooms.show" routeParams={{ id: room.id }} activeClassName="active">
+          {room.title}
+        </Link>
       </li>
     ))}
   </ul>

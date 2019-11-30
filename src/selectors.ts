@@ -6,6 +6,8 @@ import { CounterState } from './reducers/counterReducer';
 
 export const selectCounter: Selector<Store, CounterState> = (store) => store.counter;
 
+export const selectRoomByID = (id: string): Selector<Store, RoomObject> => (store) => store.room[id];
+
 export const selectAllRooms: Selector<Store, RoomObject[]> = (store) =>
   Object.values(store.room).sort((r1, r2) => r1.title.localeCompare(r2.title));
 
