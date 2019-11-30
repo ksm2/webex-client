@@ -1,36 +1,10 @@
-/* eslint-disable no-restricted-globals */
 import { expose } from 'comlink';
-import { applyMiddleware, createStore, StoreEnhancer } from 'redux';
-import { createLogger } from 'redux-logger';
-import Webex from 'webex';
 import { addRoom } from '../actions/room';
-import createReducer from './createReducer';
+import createReduxStore from './createReduxStore';
+import webex from './webex';
 import WorkerInterface from './WorkerInterface';
 
-const isDevEnvironment = process.env.NODE_ENV === 'development';
-
-// Fake window object for Webex
-// @ts-ignore
-self.window = {
-  location: self.location,
-};
-
-let middleware: StoreEnhancer<any> | undefined;
-if (isDevEnvironment) {
-  const logger = createLogger({
-    collapsed: true,
-  });
-
-  middleware = applyMiddleware(logger);
-}
-
-const webex = Webex.init({
-  credentials: {
-    access_token: process.env.REACT_APP_ACCESS_TOKEN,
-  },
-});
-
-const store = createStore(createReducer(), middleware);
+const store = createReduxStore();
 
 webex.rooms.list({ max: 10 }).then(async (rooms) => {
   let page = rooms;
