@@ -8,15 +8,10 @@ aside.Navigation {
 aside.Navigation h2 {
   font-size: 1rem;
   font-weight: bold;
-  line-height: 1.5rem;
-  padding: 0 1rem;
+  padding: 0.35rem 1rem 0.05rem;
   margin-top: 2rem;
 }
 
 aside.Navigation a {
   color: inherit;
-}
-
-aside.Navigation a:hover {
-  background: #555;
 }

@@ -10,6 +10,14 @@ ul.RoomList > li {
 
 ul.RoomList > li > a {
   display: block;
-  padding: 0 1rem;
-  line-height: 1.5rem;
+  padding: 0.35rem 1rem 0.05rem;
+  font-style: italic;
+}
+
+ul.RoomList > li > a:hover {
+  background: #555;
+}
+
+ul.RoomList > li > a.active {
+  background: #eb1c23;
 }
