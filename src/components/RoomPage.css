@@ -15,6 +15,16 @@ main.RoomPage {
   border-bottom: 1px solid #ddd;
 }
 
+.RoomHeader .fas, .RoomHeader .far {
+  vertical-align: -2px;
+  margin-right: 0.25rem;
+}
+
+.RoomHeader .fas {
+  color: goldenrod;
+}
+
 .RoomHeader h1 {
+  flex-grow: 1;
   margin-right: 1rem;
 }

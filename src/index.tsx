@@ -6,6 +6,7 @@ import createRemoteStore from './client/createRemoteStore';
 import App from './components/App';
 import createRouter from './createRouter';
 import * as serviceWorker from './serviceWorker';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './index.css';
 import './marine.css';
 

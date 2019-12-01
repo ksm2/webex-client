@@ -4,6 +4,7 @@ import { loadMessages } from '../actions/message';
 import { favoriteRoom } from '../actions/room';
 import useTitle from '../hooks/useTitle';
 import { selectMessagesByRoomID, selectRoomByID } from '../selectors';
+import Icon from './Icon';
 import MessageStream from './MessageStream';
 import './RoomPage.css';
 
@@ -31,7 +32,9 @@ const RoomPage: FC<Props> = ({ id }) => {
   return (
     <main className="Main RoomPage">
       <div className="RoomHeader">
-        <h1>{room.title}</h1>
+        <h1>
+          <Icon type="star" solid={room.favorite} /> {room.title}
+        </h1>
         <button onClick={() => dispatch(favoriteRoom(room.id, !room.favorite))}>
           {room.favorite ? 'Unfavorite' : 'Favorite'}
         </button>

@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@types/classnames": "^2.2.9",
     "@types/react-redux": "^7.1.5",
     "@types/redux": "^3.6.0",

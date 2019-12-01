@@ -14,6 +14,11 @@ ul.RoomList > li > a {
   font-style: italic;
 }
 
+ul.RoomList > li > a .fas {
+  margin-right: 0.5rem;
+  vertical-align: 0;
+}
+
 ul.RoomList > li > a:hover {
   background: #555;
 }
