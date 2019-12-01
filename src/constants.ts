@@ -1,6 +1,10 @@
 export const INCREMENT = 'counter/INCREMENT' as const;
 export const DECREMENT = 'counter/DECREMENT' as const;
 
+export const LOGIN = 'identity/LOGIN' as const;
+export const LOGOUT = 'identity/LOGOUT' as const;
+export const REQUEST_ACCESS_TOKEN = 'identity/REQUEST_ACCESS_TOKEN' as const;
+
 export const ADD_MESSAGE_TO_ROOM = 'message/ADD_MESSAGE_TO_ROOM' as const;
 export const LOAD_MESSAGES = 'message/LOAD_MESSAGES' as const;
 

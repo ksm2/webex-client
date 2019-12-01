@@ -1,6 +1,6 @@
 import { expose } from 'comlink';
-import { addRoom } from '../actions/room';
-import paginate from '../helpers/paginate';
+import { login } from '../actions/identity';
+import Identity from '../Identity';
 import createReduxStore from './createReduxStore';
 import openDatabase from './openDatabase';
 import webex from './webex';
@@ -11,16 +11,10 @@ const store = createReduxStore();
 const init = async () => {
   const db = await openDatabase;
 
-  const idbRooms = await db.getAll('rooms');
-  for (const idbRoom of idbRooms) {
-    store.dispatch(addRoom(idbRoom));
-  }
-
-  for await (const room of paginate(webex.rooms.list({ max: 10 }))) {
-    const oldRoom = await db.get('rooms', room.id);
-    const value = { favorite: false, ...oldRoom, ...room };
-    await db.put('rooms', value);
-    store.dispatch(addRoom(value));
+  const identity: Op<Identity> = await db.get('keyval', 'identity');
+  if (identity) {
+    webex.setAccessToken(identity.accessToken);
+    store.dispatch(login(identity));
   }
 };
 

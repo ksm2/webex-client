@@ -1,7 +1,11 @@
 import { DBSchema, IDBPDatabase, openDB } from 'idb';
 import RoomEntity from '../entities/RoomEntity';
 
-interface MyDB extends DBSchema {
+export interface MyDB extends DBSchema {
+  keyval: {
+    value: any;
+    key: string;
+  };
   rooms: {
     value: RoomEntity;
     key: string;
@@ -9,11 +13,14 @@ interface MyDB extends DBSchema {
 }
 
 const openDatabase = (): Promise<IDBPDatabase<MyDB>> => {
-  return openDB<MyDB>('webex', 1, {
+  return openDB<MyDB>('webex', 2, {
     upgrade(db, oldVersion, newVersion, tx) {
       db.createObjectStore('rooms', {
         keyPath: 'id',
       });
+      if (oldVersion < 2) {
+        db.createObjectStore('keyval');
+      }
     },
   });
 };

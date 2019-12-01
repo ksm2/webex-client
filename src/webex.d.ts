@@ -66,15 +66,18 @@ declare module 'webex' {
   }
 
   export interface InitOptions {
+    access_token?: string;
     config?: any;
     credentials?: any;
   }
 
-  export class Webex {
+  export class Webex extends NodeJS.EventEmitter {
     static init(initOptions: InitOptions = {}): Webex;
     readonly people: ReadonlyCollection<PersonObject>;
     readonly rooms: Collection<RoomObject>;
     readonly messages: Collection<MessageObject, MessageList>;
+    readonly canAuthorize: boolean;
+    readonly authorization: any;
   }
 
   export default Webex;

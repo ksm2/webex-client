@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'react-router5';
+import { logout } from '../actions/identity';
 import { loadMessages } from '../actions/message';
 import { favoriteRoom } from '../actions/room';
 import useTitle from '../hooks/useTitle';
@@ -16,6 +18,12 @@ const RoomPage: FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
   const room = useSelector(selectRoomByID(id));
   const messages = useSelector(selectMessagesByRoomID(id));
+  const router = useRouter();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.navigate('home');
+  };
 
   useTitle(room ? room.title : 'Loading ...');
 
@@ -38,6 +46,7 @@ const RoomPage: FC<Props> = ({ id }) => {
         <button onClick={() => dispatch(favoriteRoom(room.id, !room.favorite))}>
           {room.favorite ? 'Unfavorite' : 'Favorite'}
         </button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
       <MessageStream messages={messages || []} />
     </main>

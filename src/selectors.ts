@@ -2,10 +2,13 @@ import { Selector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { MessageObject, PersonObject } from 'webex';
 import RoomEntity from './entities/RoomEntity';
-import Store from './Store';
 import { CounterState } from './reducers/counterReducer';
+import { IdentityState } from './reducers/identityReducer';
+import Store from './Store';
 
 export const selectCounter: Selector<Store, CounterState> = (store) => store.counter;
+
+export const selectIdentity: Selector<Store, IdentityState> = (store) => store.identity;
 
 export const selectMessagesByRoomID = (id: string): Selector<Store, Op<MessageObject[]>> => (store) =>
   store.message[id];

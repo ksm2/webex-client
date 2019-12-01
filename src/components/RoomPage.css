@@ -26,5 +26,8 @@ main.RoomPage {
 
 .RoomHeader h1 {
   flex-grow: 1;
-  margin-right: 1rem;
+}
+
+.RoomHeader button {
+  margin-left: 1rem;
 }

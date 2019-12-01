@@ -5,6 +5,8 @@ import browserPlugin from 'router5-plugin-browser';
 
 const createRouter = (store: Store): Router => {
   const routes: Route[] = [
+    { name: 'auth', path: '/auth?code&state' },
+    { name: 'home', path: '/' },
     { name: 'rooms', path: '/r' },
     { name: 'rooms.show', path: '/:id' },
   ];
@@ -16,8 +18,7 @@ const createRouter = (store: Store): Router => {
     }),
   );
 
-
-// You need a router instance and a store instance
+  // You need a router instance and a store instance
   router.usePlugin(reduxPlugin(store.dispatch));
 
   router.start();

@@ -1,0 +1,16 @@
+.LoggedOutPage {
+  display: flex;
+  background: black;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+.LoggedOutPage h1 {
+  font-size: 2.5rem;
+}
+
+.LoggedOutPage > main {
+  margin: auto;
+}

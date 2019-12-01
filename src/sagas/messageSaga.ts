@@ -4,8 +4,8 @@ import { addMessageToRoom, loadMessages } from '../actions/message';
 import { LOAD_MESSAGES } from '../constants';
 import webex from '../worker/webex';
 
-const listMessages = (roomId: string, max: number) => {
-  return webex.messages.list({ roomId, max });
+const listMessages = async (roomId: string, max: number): Promise<Page<MessageObject>> => {
+  return webex.getClient().messages.list({ roomId, max });
 };
 
 function* loadMessagesSaga(action: ReturnType<typeof loadMessages>): Saga {

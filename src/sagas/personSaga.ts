@@ -5,10 +5,10 @@ import { LOAD_PERSON_BY_ID } from '../constants';
 import webex from '../worker/webex';
 
 const loadCache = new Map<string, Promise<PersonObject>>();
-const getPerson = (id: string) => {
+const getPerson = (id: string): Promise<PersonObject> => {
   let promise = loadCache.get(id);
   if (!promise) {
-    promise = webex.people.get(id);
+    promise = webex.getClient().people.get(id);
     loadCache.set(id, promise);
   }
 
