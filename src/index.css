@@ -19,9 +19,30 @@ body {
 code {
   font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
   background: #eee;
-  padding: 0.25rem;
+  padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   color: #eb1c23;
+}
+.Message:hover code {
+  background: #ddd;
+}
+
+pre {
+  margin: 0;
+  display: block;
+  padding: 0.125rem 0.25rem;
+  background: black;
+  color: white;
+  border-radius: 0.25rem;
+  overflow-y: auto;
+  width: 100%;
+}
+pre > code {
+  width: 100%;
+  display: inline;
+  padding: 0;
+  background: none !important;
+  color: inherit;
 }
 
 spark-mention::before {

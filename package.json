@@ -23,6 +23,7 @@
     "reselect": "^4.0.0",
     "router5": "^7.0.2",
     "router5-plugin-browser": "^7.0.2",
+    "showdown": "^1.9.1",
     "typescript": "3.7.2",
     "webex": "^1.80.61"
   },
@@ -54,6 +55,7 @@
     "@types/react-redux": "^7.1.5",
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.7",
+    "@types/showdown": "^1.9.3",
     "prettier": "^1.19.1",
     "worker-loader": "^2.0.0"
   }

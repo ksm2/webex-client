@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { MessageObject } from 'webex';
+import EmojiMarkdown from './EmojiMarkdown';
 import EmojiText from './EmojiText';
 
 export interface Props {
@@ -7,19 +8,24 @@ export interface Props {
 }
 
 const MessageContent: FC<Props> = ({ message }) => {
-  if (message.html) {
-    return <div className="MessageContent" dangerouslySetInnerHTML={{ __html: message.html }} />;
+  if (message.text) {
+    return (
+      <div className="MessageContent">
+        <EmojiMarkdown>{message.text}</EmojiMarkdown>
+      </div>
+    );
   }
 
-  if (message.markdown) {
-    return <div className="MessageContent">{message.markdown}</div>;
+  const text = message.html;
+  if (text) {
+    return (
+      <div className="MessageContent">
+        <EmojiText>{text}</EmojiText>
+      </div>
+    );
   }
 
-  return (
-    <div className="MessageContent">
-      <EmojiText>{message.text}</EmojiText>
-    </div>
-  );
+  return null;
 };
 
 export default MessageContent;
