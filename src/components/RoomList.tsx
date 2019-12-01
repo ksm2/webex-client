@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router5';
-import { RoomObject } from 'webex';
+import RoomEntity from '../entities/RoomEntity';
 import './RoomList.css';
 
 export interface Props {
-  rooms: RoomObject[];
+  rooms: RoomEntity[];
 }
 
 const RoomList: FC<Props> = ({ rooms }) => (

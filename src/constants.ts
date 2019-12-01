@@ -8,3 +8,4 @@ export const ADD_PERSON = 'person/ADD_PERSON' as const;
 export const LOAD_PERSON_BY_ID = 'person/LOAD_PERSON_BY_ID' as const;
 
 export const ADD_ROOM = 'room/ADD_ROOM' as const;
+export const FAVORITE_ROOM = 'room/FAVORITE_ROOM' as const;

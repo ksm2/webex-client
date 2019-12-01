@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMessages } from '../actions/message';
+import { favoriteRoom } from '../actions/room';
 import useTitle from '../hooks/useTitle';
 import { selectMessagesByRoomID, selectRoomByID } from '../selectors';
 import MessageStream from './MessageStream';
@@ -31,6 +32,9 @@ const RoomPage: FC<Props> = ({ id }) => {
     <main className="Main RoomPage">
       <div className="RoomHeader">
         <h1>{room.title}</h1>
+        <button onClick={() => dispatch(favoriteRoom(room.id, !room.favorite))}>
+          {room.favorite ? 'Unfavorite' : 'Favorite'}
+        </button>
       </div>
       <MessageStream messages={messages || []} />
     </main>
